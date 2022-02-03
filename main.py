@@ -7,5 +7,5 @@ import make
 #вызов функции генерации картинки
 #make.make(json_adr, res_adr)
 print('Starting...')
-make.make('result.json', 'freq_words.png')
+make.make('', '')
 print('Done.')
