@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.svg' %}">
+    <title>Telegram Wordcloud</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-title {
+            text-transform: uppercase;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            position: fixed;
+            padding: 20px 0;
+            background: #66326c;
+            color: #ffffff;
+        }
+        .footer {
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            position: fixed;
+            background: #66326c;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-link {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .menu {
+            position: fixed;
+            top: 140px;
+            width: 100%;
+            display: flex;
+        }
+        .menu-item {
+            width: 50%;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            text-transform: uppercase;
+            color: #000000;
+            text-decoration: none;
+            border-top: solid 10px #FFFFFF00
+        }
+        .menu-item__active {
+            border-top: solid 10px #66326cAA
+        }
+        .main {
+            padding-top: 250px;
+            height: calc(100vh - 300px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .form {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+        .form-input  {
+            height: 300px;
+            width: 300px;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .form-input__overlay {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #66326c;
+            left: 0;
+            top: 0;
+            content: "";
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius:50px;
+            user-select: none;
+            transition: all 0.5s;
+        }
+        .form-input__wrapper:hover .form-input__overlay {
+            background-color: #66326cF0;
+            top: 5px;
+            left: 5px;
+            width: 290px;
+            height: 290px;
+        }
+        .form-input__wrapper {
+            position: relative;
+        }
+        .form-input__icon {
+            height: 200px;
+            min-width: 200px;
+            transition: all 0.5s;
+        }
+        .form-input__wrapper:hover .form-input__icon {
+            height: 190px;
+            min-width: 190px;
+        }
+        #submit-input-wrapper {
+            display: none;
+        }
+        .form-input__wrapper-active {
+            display: block !important;
+        }
+        .form-input__tip {
+            position: absolute;
+            bottom: 25px;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #FFFFFF;
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        .form-input__wrapper:hover .form-input__tip {
+            opacity: 1;
+            bottom: 30px;
+        }
+        .tutorial-scroll {
+            max-height: calc(100vh - 300px);
+            width: 100%;
+        }
+        .tutorial-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 10px 0;
+            margin: 0 auto;
+        }
+        .tutorial-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 50px;
+        }
+        .tutorial-image {
+            max-width: 700px;
+        }
+        .tutorial-subheader {
+            width: 100%;
+        }
+        .tutprial-paragraph {
+            width: 100%;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+</head>
+<body>
+<header class="header">
+    <h1 class="header-title">Turn your telegram chat into a wordcloud &#127785;&#65039;</h1>
+</header>

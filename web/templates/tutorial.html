@@ -1,0 +1,31 @@
+{% include "./header.html" %} 
+<main>
+    <nav class="menu">
+        <a class="menu-item" href="/">Uploading</a>
+        <a class="menu-item menu-item__active" href="/tutorial">Tutorial</a>
+    </nav>
+    <div class="main">
+        <div class="tutorial-scroll" id="tutorial-scroll" data-simplebar>
+        <div class="tutorial-container">
+            <section class="tutorial-section">
+                <h2 class="tutorial-subheader">&#9889; Step 1:</h2>
+                <p class="tutprial-paragraph">In the <strong>Telegram Desktop</strong> app open the chat settings and click on the <strong>export chart history</strong> button.</p>
+                {% load static %}
+                <img class="tutorial-image" src="{% static 'tutorial/step-1.jpg' %}" alt="">
+                <h2 class="tutorial-subheader">&#9889; Step 2:</h2>
+                <p class="tutprial-paragraph">In the opened pop-up unselect <strong>photos</strong> and click on the <strong>format</strong> select.</p>
+                {% load static %}
+                <img class="tutorial-image" src="{% static 'tutorial/step-2.jpg' %}" alt="">
+                <h2 class="tutorial-subheader">&#9889; Step 3:</h2>
+                <p class="tutprial-paragraph">
+                    Select <strong>Machine-readable JSON</strong>, click <strong>save</strong> and then <strong>export</strong>.
+                    Wait until the file is generated and downloaded. It's name is going to be <strong>result.json</strong>.
+                    Use it to generate the wordcloud via this resource.
+                </p>
+                {% load static %}
+                <img class="tutorial-image" src="{% static 'tutorial/step-3.jpg' %}" alt="">
+            </section>
+        </div>
+    </div>
+</main>
+{% include "./footer.html" %} 

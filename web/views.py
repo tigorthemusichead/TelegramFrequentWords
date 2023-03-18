@@ -7,8 +7,12 @@ from . import utils
 from django.conf import settings
 
 #@api_view(['GET'])
-def index_page(request):
-    template = loader.get_template('home.html')
+def home_page(request):
+    template = loader.get_template('home.html', )
+    return HttpResponse(template.render())
+
+def tutorial_page(request):
+    template = loader.get_template('tutorial.html', )
     return HttpResponse(template.render())
 
 @api_view(['POST'])
