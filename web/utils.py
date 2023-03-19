@@ -22,17 +22,29 @@ def findMessages(data:any):
                 data_string += word + ' '
     return(data_string)
 
-def createWordcloud(data_string:str):
+def createWordcloud(data_string:str, data:any):
     stopwords = get_stop_words("ru")
-    wc = WordCloud(
-        background_color='white',
-        stopwords=set(stopwords),
-        height=1000,
-        width=1000,
-        max_words=80
-    )
-    wc.generate(data_string)
     file_name = data_string[:10].replace(' ', '') + '.png'
-    wc.to_file(str(settings.MEDIA_ROOT) + '/' + file_name)
+    file_path = str(settings.MEDIA_ROOT) + '/' + file_name
+    try:
+        wc = WordCloud(
+            background_color='white',
+            stopwords=set(stopwords),
+            height=int(data['height']),
+            width=int(data['width']),
+            max_words=int(data['word_count'])
+        )
+        wc.generate(data_string)
+        wc.to_file(file_path)
+    except:
+        wc = WordCloud(
+            background_color='white',
+            stopwords=set(stopwords),
+            height=1000,
+            width=1000,
+            max_words=80
+        )
+        wc.generate(data_string)
+        wc.to_file(file_path)
 
     return(file_name)

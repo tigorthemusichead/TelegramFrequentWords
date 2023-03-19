@@ -1,0 +1,16 @@
+{% include "./header.html" %} 
+<main>
+    <nav class="menu">
+        <a class="menu-item" href="/">Uploading</a>
+        <a class="menu-item" href="/tutorial">Tutorial</a>
+        <a class="menu-item menu-item__active" href={{preview_route}}>Preview</a>
+    </nav>
+    <div class="main">
+        <div class="tutorial-scroll" id="tutorial-scroll" data-simplebar>
+        <div class="tutorial-container">
+            <a href={{path}} target="_blank">
+            <img class="tutorial-image" src={{path}} alt="">
+        </div>
+    </div>
+</main>
+{% include "./footer.html" %} 
