@@ -7,5 +7,7 @@ urlpatterns = [
     path('tutorial/', views.tutorial_page),
     path('preview/<str:file_name>', views.preview_page),
     # api
-    path('uploadFile/', views.uploadFile)
+    path('uploadFile/', views.uploadFile),
+    path('contact/', views.contact),
+    path('delete/', views.delete)
 ]

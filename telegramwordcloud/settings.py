@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'django_crontab',
     'rest_framework',
     'web'
 ]
@@ -50,6 +52,53 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+]
+
+CRONJOBS = [
+    ('*/1 * * * *', 'web.cron.filesDeleteJob')
+]
+
+REST_FRAMEWORK = {
+  'DEFAULT_PERMISSION_CLASSES': [
+      'rest_framework.permissions.AllowAny',
+  ],
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',  # for localhost (REACT Default)
+    'http://192.168.0.50:3000',  # for network 
+    'http://localhost:8080',  # for localhost (Developlemt)
+    'http://192.168.0.50:8080',  # for network (Development)
+)
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',  # for localhost (REACT Default)
+    'http://192.168.0.50:3000',  # for network 
+    'http://localhost:8080',  # for localhost (Developlemt)
+    'http://192.168.0.50:8080',  # for network (Development)
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 
 ROOT_URLCONF = 'telegramwordcloud.urls'
@@ -140,3 +189,8 @@ PREVIEW_ROUTE = '/preview/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TELEGRAM = {
+    'bot_token': '5851369569:AAGbXfE50xoYoLWBwbIvE7pZ8h-gmvUEPnw',
+    'chat_id': '-763780114',
+}

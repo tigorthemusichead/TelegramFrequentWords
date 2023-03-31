@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from . import utils
 from django.conf import settings
+import requests
+from . import cron
 
 #@api_view(['GET'])
 def home_page(request):
@@ -24,11 +26,37 @@ def preview_page(request, file_name):
 
 @api_view(['POST'])
 def uploadFile(request):
-    try:
+    #try:
         file = request.FILES['file']
         jsonFile = utils.parseJson(file)
         data_string = utils.findMessages(jsonFile)
         image_url = utils.createWordcloud(data_string, data=request.data)
-        return redirect(settings.PREVIEW_ROUTE + image_url)
+        #return redirect(settings.PREVIEW_ROUTE + image_url)
+        return Response ({
+            "success": True,
+            "filePath": settings.MEDIA_URL + image_url
+            })
+   #except:
+   #    return Response ({
+   #        "success": False
+   #     })
+        #return redirect('/')
+
+@api_view(['POST'])
+def contact(request):
+    try:
+        data = request.data
+        print(request.data)
+        message = utils.createMessage(data)
+        telegram_settings = settings.TELEGRAM
+        url = f"https://api.telegram.org/bot{telegram_settings['bot_token']}/sendMessage?chat_id={telegram_settings['chat_id']}&text={message}"
+    
+        return Response(requests.get(url).json())
     except:
-        return redirect('/')
+        return Response ({"success": False})
+
+
+@api_view(['DELETE'])
+def delete(request):
+    cron.filesDeleteJob()
+    return Response({"success": True})
